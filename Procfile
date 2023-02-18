@@ -1,1 +1,1 @@
-web: gunicorn taskninja.wsgi
+web gunicorn wsgi:app
