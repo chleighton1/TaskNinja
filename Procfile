@@ -1,1 +1,1 @@
-web: gunicorn taskninja.app
+web: gunicorn run.app
