@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+<img
+        class="splash-img"
+        src="../static/img/splash.jpeg"
+        alt="Photo by Guilain Demoutiers on Unsplash"
+/>
+
+<div class="pitch">
+    <p>
+        Are you tired of constantly forgetting what you need to do and when
+        you need to do it? Look no further, because Task Ninja is here to
+        revolutionize the way you manage your to-do list. Our to-do list
+        application is designed to make your life easier and more organized.
+        With a user-friendly interface, you can quickly and easily add tasks
+        or schedule them for a future date. <br/><br/>So why wait? Say goodbye to cluttered
+        and disorganized lists, and say hello to Task Ninja. Start getting
+        things done and make the most out of your day!
+    </p>
+    <a class="cta register-button" href="{{ url_for('users.register') }}">
+        <button id="register">Register Now  <ion-icon class="arrow" name="arrow-forward-outline"></ion-icon></button>
+    </a>
+</div>
+
+{% endblock content %}

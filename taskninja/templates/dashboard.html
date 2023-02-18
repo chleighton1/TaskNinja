@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="date">
+    <h1>{{ time.strftime("%A, %B %-d %Y") }}</h1>
+</div>
+
+<section class="todo-section">
+    <div class="todo-div">
+        <h2>to-do list</h2>
+        <div class="todo-table">
+            <table class="table-test">
+                <!--      PRINT OUT TASKS-->
+                {% for task in current_user.tasks %}
+                    {% if (task.date_scheduled.month, task.date_scheduled.day) == (time.month, time.day) %}
+                        <tr>
+                            <td class="todo-item">
+                                {{ task.task }}
+                                <form action="{{ url_for('users.delete', id=task.id, type='task') }}">
+                                    <button class="complete-button">&radic;</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                <!--      ADD NEW TASK -->
+
+            </table>
+            <form method="POST" action="" class="form add-task">
+                {{ task_form.hidden_tag() }}
+                <fieldset class="todo-input-form">
+                    <div class="form-group">
+                        {{ task_form.task(class="todo-input", autocomplete="off") }}
+                    </div>
+                </fieldset>
+                <div>
+                    {{ task_form.submit(class="add-button") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<section class="motivation-section">
+    <div class="motivation-div">
+        <h2>Quote of the Day</h2>
+        <div class="motivation-table">
+            <table>
+                <tr>
+                    <td class="motivation-item">
+                        "{{ quote.quote }}"
+                        <br/>
+                        -{{ quote.author }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="goals-section">
+    <h2>{{ time.strftime('%B') }} Goals</h2>
+    <div class="goal-table">
+        <table>
+            {% for goal in current_user.goals %}
+                {% if goal.date_created.month == time.month %}
+                <tr>
+                    <td class="goal-item">
+                        {{ goal.goal }}
+                        <form action="{{ url_for('users.delete', id=goal.id, type='goal') }}">
+                            <button class="complete-button">&radic;</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+        <form method="POST" action="" class="form add-goal">
+            {{ goal_form.hidden_tag() }}
+            <fieldset class="goal-input-form">
+                <div class="form-group">
+                    {{ goal_form.goal(class="goal-input", autocomplete="off") }}
+                </div>
+            </fieldset>
+            <div class="add-goal-btn">
+                {{ goal_form.submit(class="add-button") }}
+            </div>
+        </form>
+    </div>
+</section>
+
+
+{% endblock content %}

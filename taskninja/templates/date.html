@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="cal-nav">
+        <form class="left-cal-btn" action="{{ url_for('calendars.calendar', year=date.year, month=date.month, offset=0) }}"><button><ion-icon name="arrow-undo"></ion-icon></button></form>
+    </div>
+
+    <h2 class="date-title">{{ date.strftime("%A, %B %-d %Y") }}</h2>
+
+
+        <div class="date-div">
+            <h2>to-do list</h2>
+            <div class="todo-table">
+                <table class="table-test">
+                    <!--      PRINT OUT TASKS-->
+                    {% for task in current_user.tasks %}
+                        {% if (task.date_scheduled.month, task.date_scheduled.day) == (month, day) %}
+                        <tr>
+                            <td class="todo-item">
+                                {{ task.task }}
+                                <form action="{{ url_for('users.delete', id=task.id, type='task') }}">
+                                    <button class="complete-button">&radic;</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    <!--      ADD NEW TASK -->
+
+                </table>
+                <form method="POST" action="" class="form add-task">
+                    {{ task_form.hidden_tag() }}
+                    <fieldset class="todo-input-form">
+                        <div class="form-group">
+                            {{ task_form.task(class="todo-input", autocomplete="off") }}
+                        </div>
+                    </fieldset>
+                    <div>
+                        {{ task_form.submit(class="add-button") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+{% endblock content %}

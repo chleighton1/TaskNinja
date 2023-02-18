@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+<style>
+    td.d-{{ today }} {
+    background-color: #f1f3f5;
+    }
+</style>
+
+{% endblock head %}
+
+{% block content %}
+
+
+    <div class="cal-nav">
+        <form class="left-cal-btn" action="{{ url_for('calendars.calendar', year=year, month=month, offset=2) }}"><button><ion-icon name="caret-back-outline"></ion-icon></button></form>
+        <form class="left-cal-btn" action="{{ url_for('calendars.calendar') }}"><button>Today</button></form>
+        <form class="right-cal-btn" action="{{ url_for('calendars.calendar', year=year, month=month, offset=1) }}"><button><ion-icon name="caret-forward-outline"></ion-icon></button></form>
+    </div>
+
+
+    {{ cal|safe }}
+
+
+
+{% endblock content %}

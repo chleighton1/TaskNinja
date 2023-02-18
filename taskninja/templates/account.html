@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="content-section account-content">
+
+    <form method="POST" action="" enctype="multipart/form-data">
+
+        {{ form.hidden_tag() }}
+        <fieldset class="form-main">
+            <div class="media">
+                <img class="rounded-circle account-img" src="{{ image_file }}">
+                <div class="media-body">
+                    <h2 class="account-heading">{{ current_user.username }}</h2>
+                    <p class="secondary">{{ current_user.email }}</p>
+                </div>
+            </div>
+            <div class="account-info">
+                <legend>Account Info</legend>
+            </div>
+
+            <div class="form-item">
+                {{ form.username.label(class="form-label") }}
+
+                {% if form.username.errors %}
+                {{ form.username(class="form-input is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.username.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.username(class="form-input", placeholder="Enter your username", autocomplete="off") }}
+                {% endif %}
+            </div>
+            <div class="form-item">
+                {{ form.email.label(class="form-label") }}
+
+                {% if form.email.errors %}
+                {{ form.email(class="form-input is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.email(class="form-input", placeholder="Enter your Email", autocomplete="off") }}
+                {% endif %}
+            </div>
+            <div class="form-item">
+                {{ form.picture.label(class="form-label") }}
+                {{ form.picture(class="") }}
+                {% if form.picture.errors %}
+                {% for error in form.picture.errors %}
+                <br><span class="invalid-feedback">{{ error }}</span>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="submit-button">
+                {{ form.submit(class="btn sign-up-button") }}
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+
+
+{% endblock content %}
