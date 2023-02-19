@@ -5,9 +5,10 @@ from flask_login import current_user, login_required, login_user, logout_user
 from taskninja import bcrypt, db
 from taskninja.users.forms import GoalForm, LoginForm, RegistrationForm, TaskForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
 from taskninja.models import Goal, Task, Users, Quote
-from taskninja.users.utils import save_picture, send_reset_email
 
 users = Blueprint('users', __name__)
+
+from taskninja.users.utils import save_picture, send_reset_email
 
 
 @users.route("/dashboard", methods=['GET', 'POST'])

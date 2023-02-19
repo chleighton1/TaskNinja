@@ -1,4 +1,3 @@
-import taskninja.models
 from run import app
 from taskninja import db
 

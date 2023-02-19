@@ -25,18 +25,24 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
     mail.init_app(app)
 
-    from taskninja.users.routes import users
-    from taskninja.calendars.routes import calendars
-    from taskninja.main.routes import main
-    from taskninja.errors.handlers import errors
-    app.register_blueprint(users)
-    app.register_blueprint(calendars)
-    app.register_blueprint(main)
-    app.register_blueprint(errors)
+    with app.app_context():
+        from taskninja.users.routes import users
+        from taskninja.calendars.routes import calendars
+        from taskninja.main.routes import main
+        from taskninja.errors.handlers import errors
+        app.register_blueprint(users)
+        app.register_blueprint(calendars)
+        app.register_blueprint(main)
+        app.register_blueprint(errors)
 
+    WHITENOISE_MAX_AGE = 31536000 if not app.config["DEBUG"] else 0
+
+    # configure WhiteNoise
     app.wsgi_app = WhiteNoise(
         app.wsgi_app,
-        root="../static/"
+        root=os.path.join(os.path.dirname(__file__), "staticfiles"),
+        prefix="assets/",
+        max_age=WHITENOISE_MAX_AGE,
     )
 
     return app
