@@ -18,7 +18,7 @@ mail = Mail()
 
 
 def create_app(config_class=Config):
-    app = Flask(__name__, static_folder="staticfiles")
+    app = Flask(__name__, static_folder="../static")
     app.config.from_object(Config)
     db.init_app(app)
     bcrypt.init_app(app)
@@ -36,7 +36,7 @@ def create_app(config_class=Config):
 
     app.wsgi_app = WhiteNoise(
         app.wsgi_app,
-        root=os.path.join(os.path.dirname(__file__), "staticfiles"),
+        root=os.path.join(os.path.dirname(__file__), "static"),
         prefix="assets/",
     )
 
