@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
 from taskninja.config import Config
+from whitenoise import WhiteNoise
 
 
 
@@ -31,5 +32,7 @@ def create_app(config_class=Config):
     app.register_blueprint(calendars)
     app.register_blueprint(main)
     app.register_blueprint(errors)
+
+    app.wsgi_app = WhiteNoise(app.wsgi_app, root="../static/")
 
     return app
