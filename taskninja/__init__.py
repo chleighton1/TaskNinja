@@ -5,6 +5,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from taskninja.config import Config
 from whitenoise import WhiteNoise
+import os
 
 
 
@@ -17,7 +18,7 @@ mail = Mail()
 
 
 def create_app(config_class=Config):
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder="staticfiles")
     app.config.from_object(Config)
     db.init_app(app)
     bcrypt.init_app(app)
@@ -33,6 +34,10 @@ def create_app(config_class=Config):
     app.register_blueprint(main)
     app.register_blueprint(errors)
 
-    app.wsgi_app = WhiteNoise(app.wsgi_app, root="static/img/")
+    app.wsgi_app = WhiteNoise(
+        app.wsgi_app,
+        root=os.path.join(os.path.dirname(__file__), "staticfiles"),
+        prefix="assets/",
+    )
 
     return app
