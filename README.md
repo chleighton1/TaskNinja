@@ -1,5 +1,6 @@
 # TASK NINJA
 #### Video Demo:  <https://youtu.be/92thatphIn4>
+#### Website Link: <https://taskninja.herokuapp.com/>
 #### Description:
 This is my final project - TASK NINJA. The idea was to create a to-do list / task manager web app. Once I had the idea down, I started by drawing out the main dashboard page with pen and paper. I then used HTML and CSS to put it mostly together then I created my python project using Flask to create the funtionality of the program. The project consists of the following main elements:
     
@@ -14,3 +15,4 @@ This is my final project - TASK NINJA. The idea was to create a to-do list / tas
 -Calendar so you can schedule tasks for the future and see what you have for each day.  This took quite a while, I made use of HTMLCalendar but I wanted to change some of the functionality so I inherited it into my UserCalendar class and adjusted the functions I needed to get what I wanted. This included passing in specific class names and hrefs so you could click on a date and have it take you to a new page with that dates information(specific to that user).
     
 I used a sqlite database but then switched to Postgres when I put it onto Heroku.  I also used some tutorials online to create a create_app function and structure my project into Blueprints. I think that is about it, hope you like it!
+
