@@ -70,4 +70,4 @@ class Goal(db.Model):
     def __repr__(self):
         return f"Goal('{self.goal}', '{self.date_created}')"
 
-db.create_all()
+
