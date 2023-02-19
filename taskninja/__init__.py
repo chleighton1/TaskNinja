@@ -13,7 +13,6 @@ bcrypt = Bcrypt()
 login_manager = LoginManager()
 login_manager.login_view = 'users.login'
 mail = Mail()
-# db.create_all()
 
 
 def create_app(config_class=Config):
