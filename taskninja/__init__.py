@@ -33,6 +33,6 @@ def create_app(config_class=Config):
     app.register_blueprint(main)
     app.register_blueprint(errors)
 
-    app.wsgi_app = WhiteNoise(app.wsgi_app, root="../static/")
+    app.wsgi_app = WhiteNoise(app.wsgi_app, root="static/")
 
     return app
