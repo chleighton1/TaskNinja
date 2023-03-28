@@ -30,7 +30,9 @@ def dashboard():
         return redirect(url_for('users.dashboard'))
     quote = Quote.query.first()
     if (quote is None) or (quote.time.day != datetime.utcnow().day):
-        Quote.query.all().delete()
+        all_quotes = Quote.query.all()
+        for quote in all_quotes:
+            quote.delete()
         db.session.commit()
         response = requests.get(url="https://zenquotes.io/api/today")
         response.raise_for_status()
