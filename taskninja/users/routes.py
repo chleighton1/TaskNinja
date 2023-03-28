@@ -18,6 +18,11 @@ def dashboard():
     time = datetime.now()
     task_form = TaskForm()
     goal_form = GoalForm()
+    response = requests.get(url="https://zenquotes.io/api/today")
+    response.raise_for_status()
+    data = response.json()
+    quote_text = data[0]['q']
+    quote_author = data[0]['a']
     if task_form.validate_on_submit():
         task = Task(task=task_form.task.data, user_id=current_user.id)
         db.session.add(task)
@@ -28,21 +33,7 @@ def dashboard():
         db.session.add(goal)
         db.session.commit()
         return redirect(url_for('users.dashboard'))
-    quote = Quote.query.first()
-    if (quote is None) or (quote.time.day != datetime.utcnow().day):
-        Quote.query.filter_by(id=1).delete()
-        db.session.commit()
-        response = requests.get(url="https://zenquotes.io/api/today")
-        response.raise_for_status()
-        data = response.json()
-        print("request sent")
-        quote_text = data[0]['q']
-        quote_author = data[0]['a']
-        new_quote = Quote(quote=quote_text, author=quote_author)
-        db.session.add(new_quote)
-        db.session.commit()
-        quote = Quote.query.first()
-    return render_template("dashboard.html", task_form=task_form, goal_form=goal_form, quote=quote, time=time)
+    return render_template("dashboard.html", task_form=task_form, goal_form=goal_form, quote_text=quote_text, quote_author=quote_author, time=time)
 
 
 @users.route("/register", methods=['GET', 'POST'])

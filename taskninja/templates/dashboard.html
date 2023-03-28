@@ -18,6 +18,7 @@
                                 {{ task.task }}
                                 <form action="{{ url_for('users.delete', id=task.id, type='task') }}">
                                     <button class="complete-button">&radic;</button>
+                                    <button class="delete-btn">-</button>
                                 </form>
                             </td>
                         </tr>
@@ -49,9 +50,9 @@
             <table>
                 <tr>
                     <td class="motivation-item">
-                        "{{ quote.quote }}"
+                        "{{ quote_text }}"
                         <br/>
-                        -{{ quote.author }}
+                        -{{ quote_author }}
                     </td>
                 </tr>
             </table>

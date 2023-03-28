@@ -191,6 +191,21 @@ button:hover,
   background-color: #00a2ac;
 }
 
+.delete-btn {
+  color: #c92a2a;
+  background-color: #f8f9fa;
+  height: 25px;
+
+  padding: 0 6px;
+  font-size: 24px;
+  margin-right: 8px;
+
+
+  border: 1px solid rgba(52, 58, 64, 0.5);
+  border-radius: 20px;
+
+}
+
 
 .add-button {
   padding: 0 6px;
