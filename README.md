@@ -36,19 +36,18 @@ https://github.com/chleighton1/TaskNinja/assets/60336791/80f3d37e-295a-4e7a-aa62
 
 ## My process
 
-I started by drawing out the main dashboard page with pen and paper. I also drew out some of the other pages like the calendar and the main splash page. I also spent some time drawing out how I wanted my database and tables to be structured and how they would relate to each other. Once I finished all that I then used HTML and CSS to put the pages mostly together then I created my python project using Flask to create the functionality of the program. The project consists of the following main elements:
+I began by sketching the main dashboard, along with other pages like the calendar and splash page, using pen and paper. I also outlined the structure of my database and its tables, considering their relationships. With that blueprint in mind:
 
--Forms using Flask WTF to receive input from the user: Registration, Login, submitting tasks or goals, updating the account and requesting a password reset. I made use of validators to make sure I was getting the right information and / or raise validation errors.
-    
--Models for the database using SQLAlchemy. The main model is the 'Users' model. This contains the relevant user information as well as a relationship to the tasks and goals tables. Idea is that each user should only be able to see their own tasks and goals. I also have a Quote table, this is just to store the 'Quote of The Day' received from the API request, so I only need to make 1 request per day.
-    
--Routes for all the different functionality of the website such as adding users/tasks/goals to the database, logging in and registering an account, passing the relevent information to each page(forms, datetime objects, images, etc.).
-   
--Templates for all the HTML pages. I made a main 'layout' page and then extended that for all the remaining pages
-    
--Calendar so you can schedule tasks for the future and see what you have for each day. I made use of HTMLCalendar but I wanted to change some of the functionality so I inherited it into my UserCalendar class and adjusted the functions I needed to get what I wanted. This included passing in specific class names and hrefs so you could click on a date and have it take you to a new page with that dates information(specific to that user).
+1. **HTML/CSS:** I translated the sketches into web pages using HTML and CSS, focusing on layout and design.
+2. **Python with Flask:** I initiated a Python project using Flask to implement the program's functionality. Here's an overview of the main elements:
+   - **Forms:** Utilized Flask WTF to create forms for user registration, login, task/goal submission, account updates, and password reset. Integrated validators to ensure data integrity and handle validation errors effectively.
+   - **Database Models:** Employed SQLAlchemy to define database models, with the central model being 'Users'. This model stored user information and maintained relationships with 'tasks' and 'goals' tables. The 'Quote' table was also added to store the 'Quote of The Day' obtained from an API request, ensuring only one request per day.
+   - **Routes:** Implemented routes to handle various functionalities of the website, such as user/task/goal management, login/register actions, and passing necessary data to each page (e.g., forms, datetime objects, images).
+   - **Templates:** Created HTML templates for all pages, utilizing a main 'layout' page and extending it for other pages for consistency.
+   - **Calendar:** Integrated a calendar feature to schedule tasks and view daily plans. Initially utilized HTMLCalendar but customized its functionality by subclassing into 'UserCalendar', adapting necessary functions to enable user-specific actions such as clicking on dates to view individualized information.
+3. **Postgres Database:** Utilized Postgres as the backend database to store user information, tasks, goals, and daily quotes.
 
--Postgres database
+This approach ensured a structured and functional web application with Flask, incorporating necessary features like forms, database management, routing, templating, and calendar integration to create a user-friendly experience.
 
 
 ### Built with
